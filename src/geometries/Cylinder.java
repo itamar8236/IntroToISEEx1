@@ -9,7 +9,7 @@ public class Cylinder extends Tube {
     double height;
 
     /**
-     * ctor
+     * Constructor for Cylinder class.
      *
      * @param height are the height of the Cylinder
      */

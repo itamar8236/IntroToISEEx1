@@ -12,15 +12,15 @@ public class Point3D {
     /**
      * The x coordinate value. "package-friendly".
      */
-    final Coordinate _x;
+    final Coordinate x;
     /**
      * The y coordinate value. "package-friendly".
      */
-    final Coordinate _y;
+    final Coordinate y;
     /**
      * The z coordinate value. "package-friendly".
      */
-    final Coordinate _z;
+    final Coordinate z;
     /**
      * static field, represent the origin. the 3D point (0,0,0)
      */
@@ -34,9 +34,9 @@ public class Point3D {
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         // this(x.coord, y.coord, z.coord);
         // for better performance we had modify to:
-        _x = x;
-        _y = y;
-        _z = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     /**
@@ -47,9 +47,9 @@ public class Point3D {
      * @param z the z coordinate value
      */
     public Point3D(double x, double y, double z) {
-        _x = new Coordinate(x);
-        _y = new Coordinate(y);
-        _z = new Coordinate(z);
+        this.x = new Coordinate(x);
+        this.y = new Coordinate(y);
+        this.z = new Coordinate(z);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class Point3D {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point3D point3D = (Point3D) o;
-        return _x.equals(point3D._x) && _y.equals(point3D._y) && _z.equals(point3D._z);
+        return x.equals(point3D.x) && y.equals(point3D.y) && z.equals(point3D.z);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_x.coord, _y.coord, _z.coord);
+        return Objects.hash(x.coord, y.coord, z.coord);
     }
 
     /**
@@ -72,12 +72,12 @@ public class Point3D {
      * @return the squared distance
      */
     public double distanceSquared(Point3D point3D) {
-        double x1 = _x.coord;
-        double y1 = _y.coord;
-        double z1 = _z.coord;
-        double x2 = point3D._x.coord;
-        double y2 = point3D._y.coord;
-        double z2 = point3D._z.coord;
+        double x1 = x.coord;
+        double y1 = y.coord;
+        double z1 = z.coord;
+        double x2 = point3D.x.coord;
+        double y2 = point3D.y.coord;
+        double z2 = point3D.z.coord;
 
         return (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1);
     }
@@ -100,9 +100,9 @@ public class Point3D {
      */
     public Point3D add(Vector vector) {
         return new Point3D(
-                _x.coord + vector._head._x.coord,
-                _y.coord + vector._head._y.coord,
-                _z.coord + vector._head._z.coord);
+                x.coord + vector.head.x.coord,
+                y.coord + vector.head.y.coord,
+                z.coord + vector.head.z.coord);
     }
 
     /**
@@ -113,14 +113,14 @@ public class Point3D {
      */
     public Vector subtract(Point3D other) {
         return new Vector(
-                _x.coord - other._x.coord,
-                _y.coord - other._y.coord,
-                _z.coord - other._z.coord
+                x.coord - other.x.coord,
+                y.coord - other.y.coord,
+                z.coord - other.z.coord
         );
     }
 
     @Override
     public String toString() {
-        return "(" + _x + ", " + _y + ", " + _z + ")";
+        return "(" + x + ", " + y + ", " + z + ")";
     }
 }

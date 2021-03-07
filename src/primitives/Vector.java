@@ -14,7 +14,7 @@ public class Vector {
     /**
      * The head of the vector, represented as 3D point
      */
-    Point3D _head;
+    Point3D head;
 
     /**
      * Constructor for Vector class
@@ -25,7 +25,7 @@ public class Vector {
         if (head.equals(ZERO)) {
             throw new IllegalArgumentException("head can't be zero point");
         }
-        _head = head;
+        this.head = head;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Vector {
      * @return The head of the vector.
      */
     public Point3D getHead() {
-        return _head;
+        return head;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Vector {
      * @return the subtraction between the vectors
      */
     public Vector subtract(Vector other) {
-        Vector temp = ZERO.subtract(other._head);
+        Vector temp = ZERO.subtract(other.head);
         return this.add(temp);
     }
 
@@ -78,7 +78,7 @@ public class Vector {
      * @return The addition between the two vectors.
      */
     public Vector add(Vector other) {
-        return new Vector(_head.add(other));
+        return new Vector(head.add(other));
     }
 
     /**
@@ -89,9 +89,9 @@ public class Vector {
      */
     public Vector scale(double scalar) {
         return new Vector(
-                _head._x.coord * scalar,
-                _head._y.coord * scalar,
-                _head._z.coord * scalar
+                head.x.coord * scalar,
+                head.y.coord * scalar,
+                head.z.coord * scalar
         );
     }
 
@@ -102,9 +102,9 @@ public class Vector {
      * @return The value of the dot product
      */
     public double dotProduct(Vector other) {
-        return _head._x.coord * other._head._x.coord +
-                _head._y.coord * other._head._y.coord +
-                _head._z.coord * other._head._z.coord;
+        return head.x.coord * other.head.x.coord +
+                head.y.coord * other.head.y.coord +
+                head.z.coord * other.head.z.coord;
     }
 
     /**
@@ -114,12 +114,12 @@ public class Vector {
      * @return The vertical vector to the two vectors (the cross product value).
      */
     public Vector crossProduct(Vector other) {
-        double u1 = _head._x.coord;
-        double u2 = _head._y.coord;
-        double u3 = _head._z.coord;
-        double v1 = other._head._x.coord;
-        double v2 = other._head._y.coord;
-        double v3 = other._head._z.coord;
+        double u1 = head.x.coord;
+        double u2 = head.y.coord;
+        double u3 = head.z.coord;
+        double v1 = other.head.x.coord;
+        double v2 = other.head.y.coord;
+        double v3 = other.head.z.coord;
 
         return new Vector(
                 u2 * v3 - u3 * v2,
@@ -134,7 +134,7 @@ public class Vector {
      * @return The squared distance
      */
     public double lengthSquared() {
-        return _head.distanceSquared(ZERO);
+        return head.distanceSquared(ZERO);
     }
 
     /**
@@ -153,9 +153,9 @@ public class Vector {
      * @return The normalized vector.
      */
     public Vector normalized() {
-        double u1 = _head._x.coord;
-        double u2 = _head._y.coord;
-        double u3 = _head._z.coord;
+        double u1 = head.x.coord;
+        double u2 = head.y.coord;
+        double u3 = head.z.coord;
         double len = this.length();
         return new Vector(u1 / len, u2 / len, u3 / len);
     }
@@ -167,7 +167,7 @@ public class Vector {
      * @return The normalized vector.
      */
     public Vector normalize() {
-        _head = this.normalized()._head;
+        head = this.normalized().head;
         return this;
     }
 
@@ -176,16 +176,16 @@ public class Vector {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector vector = (Vector) o;
-        return _head.equals(vector._head);
+        return head.equals(vector.head);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_head);
+        return Objects.hash(head);
     }
 
     @Override
     public String toString() {
-        return "head=" + _head;
+        return "head=" + head;
     }
 }

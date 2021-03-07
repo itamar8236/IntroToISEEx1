@@ -6,7 +6,7 @@ import primitives.*;
  * class for represent Cylinder
  */
 public class Cylinder extends Tube {
-    double _height;
+    double height;
 
     /**
      * ctor
@@ -14,7 +14,7 @@ public class Cylinder extends Tube {
      * @param height are the height of the Cylinder
      */
     public Cylinder(double height) {
-        _height = height;
+        this.height = height;
     }
 
     /**
@@ -23,7 +23,7 @@ public class Cylinder extends Tube {
      * @return height
      */
     public double getHeight() {
-        return _height;
+        return height;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Cylinder extends Tube {
     @Override
     public String toString() {
         return "Cylinder{" +
-                "_height=" + _height +
+                "_height=" + height +
                 ", axisRay=" + axisRay +
                 ", radius=" + radius +
                 '}';

@@ -9,11 +9,11 @@ public class Sphere implements Geometry {
     /**
      * point of the center of the sphere
      */
-    Point3D _center;
+    Point3D center;
     /**
      * the radius of the sphere
      */
-    double _radius;
+    double radius;
 
     /**
      * ctor
@@ -22,8 +22,8 @@ public class Sphere implements Geometry {
      * @param radius is the radius of the sphere
      */
     public Sphere(Point3D center, double radius) {
-        this._center = center;
-        this._radius = radius;
+        this.center = center;
+        this.radius = radius;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Sphere implements Geometry {
      * @return center
      */
     public Point3D getCenter() {
-        return _center;
+        return center;
     }
 
     /**
@@ -41,14 +41,14 @@ public class Sphere implements Geometry {
      * @return radius
      */
     public double getRadius() {
-        return _radius;
+        return radius;
     }
 
     @Override
     public String toString() {
         return "Sphere{" +
-                "center=" + _center +
-                ", radius=" + _radius +
+                "center=" + center +
+                ", radius=" + radius +
                 '}';
     }
 

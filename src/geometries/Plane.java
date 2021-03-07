@@ -9,11 +9,11 @@ public class Plane implements Geometry {
     /**
      * q0 is point in the plane
      */
-    Point3D _q0;
+    Point3D q0;
     /**
      * normal of the plane
      */
-    Vector _normal;
+    Vector normal;
 
     /**
      * ctor
@@ -22,8 +22,8 @@ public class Plane implements Geometry {
      * @param normal the vector normal of the plane
      */
     public Plane(Point3D q0, Vector normal) {
-        this._q0 = q0;
-        this._normal = normal;
+        this.q0 = q0;
+        this.normal = normal;
     }
 
     /**
@@ -34,8 +34,8 @@ public class Plane implements Geometry {
      * @param p3 point in the plane
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-        _q0 = p1;
-        _normal = null; // need implementation
+        q0 = p1;
+        normal = null; // need implementation
     }
 
     /**
@@ -44,7 +44,7 @@ public class Plane implements Geometry {
      * @return Point3D p0
      */
     public Point3D getQ0() {
-        return _q0;
+        return q0;
     }
 
     /**
@@ -53,7 +53,7 @@ public class Plane implements Geometry {
      * @return normal
      */
     public Vector getNormal() {
-        return _normal;
+        return normal;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class Plane implements Geometry {
     @Override
     public String toString() {
         return "Plane{" +
-                "q0=" + _q0 +
-                ", normal=" + _normal +
+                "q0=" + q0 +
+                ", normal=" + normal +
                 '}';
     }
 }

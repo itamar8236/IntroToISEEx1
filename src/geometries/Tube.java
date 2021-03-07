@@ -1,9 +1,17 @@
 package geometries;
 
 import primitives.*;
-
+/**
+ * class for represent Cylinder
+ */
 public class Tube implements Geometry{
+    /**
+     * the axis ray of the Cylinder
+     */
     protected Ray axisRay;
+    /**
+     * the radius of the Cylinder
+     */
     protected double radius;
 
     @Override

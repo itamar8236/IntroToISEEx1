@@ -2,13 +2,24 @@ package geometries;
 
 import primitives.*;
 
+/**
+ * class for represent Cylinder
+ */
 public class Cylinder extends Tube {
     double _height;
 
+    /**
+     * ctor
+     * @param height are the height of the Cylinder
+     */
     public Cylinder(double height) {
         _height = height;
     }
 
+    /**
+     * get for height
+     * @return height
+     */
     public double getHeight() {
         return _height;
     }

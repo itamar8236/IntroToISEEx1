@@ -1,12 +1,14 @@
 package geometries;
 
 import primitives.Point3D;
+
 /**
  * class for represent Cylinder
  */
 public class Triangle extends Polygon {
     /**
      * ctor
+     *
      * @param p1 is point of vertex of the triangle
      * @param p2 is point of vertex of the triangle
      * @param p3 is point of vertex of the triangle

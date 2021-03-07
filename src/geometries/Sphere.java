@@ -17,6 +17,7 @@ public class Sphere implements Geometry {
 
     /**
      * ctor
+     *
      * @param center is the center of the sphere
      * @param radius is the radius of the sphere
      */
@@ -27,13 +28,16 @@ public class Sphere implements Geometry {
 
     /**
      * get of center
+     *
      * @return center
      */
     public Point3D getCenter() {
         return _center;
     }
+
     /**
      * get of radius
+     *
      * @return radius
      */
     public double getRadius() {

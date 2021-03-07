@@ -17,7 +17,8 @@ public class Plane implements Geometry {
 
     /**
      * ctor
-     * @param q0 some point on the plane
+     *
+     * @param q0     some point on the plane
      * @param normal the vector normal of the plane
      */
     public Plane(Point3D q0, Vector normal) {
@@ -27,6 +28,7 @@ public class Plane implements Geometry {
 
     /**
      * ctor that build normal from 2 vector that build from 3 points
+     *
      * @param p1 point in the plane
      * @param p2 point in the plane
      * @param p3 point in the plane
@@ -38,6 +40,7 @@ public class Plane implements Geometry {
 
     /**
      * get of q0
+     *
      * @return Point3D p0
      */
     public Point3D getQ0() {
@@ -46,6 +49,7 @@ public class Plane implements Geometry {
 
     /**
      * implaments of the interface Geometry
+     *
      * @return normal
      */
     public Vector getNormal() {

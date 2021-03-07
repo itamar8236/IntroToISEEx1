@@ -21,6 +21,9 @@ public class Point3D {
      * The z coordinate value. "package-friendly".
      */
     final Coordinate _z;
+    /**
+     * static field, represent the origin. the 3D point (0,0,0)
+     */
     public static final Point3D ZERO = new Point3D(0, 0, 0);
 
     /**
@@ -38,6 +41,7 @@ public class Point3D {
 
     /**
      * Constructor for 3D Point
+     *
      * @param x the x coordinate value
      * @param y the y coordinate value
      * @param z the z coordinate value
@@ -63,6 +67,7 @@ public class Point3D {
 
     /**
      * Calculate the distance, squared, between this point and another.
+     *
      * @param point3D the other point
      * @return the squared distance
      */
@@ -79,6 +84,7 @@ public class Point3D {
 
     /**
      * Calculate the distance, between this point and another.
+     *
      * @param point3D the other point
      * @return the distance
      */
@@ -88,6 +94,7 @@ public class Point3D {
 
     /**
      * Adds a vector to the point
+     *
      * @param vector the vector to add
      * @return the point of the head of the new vector from the current point with the vector added
      */
@@ -100,6 +107,7 @@ public class Point3D {
 
     /**
      * Calculate vector as subtraction between 2 points
+     *
      * @param other the second point
      * @return the vector from the current point to the other point
      */

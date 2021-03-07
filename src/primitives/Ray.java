@@ -20,7 +20,8 @@ public class Ray {
 
     /**
      * Constructor for Ray class
-     * @param p0 The p0 start point
+     *
+     * @param p0  The p0 start point
      * @param dir The direction of the ray as vector
      */
     public Ray(Point3D p0, Vector dir) {
@@ -30,6 +31,7 @@ public class Ray {
 
     /**
      * Get the head point of the ray
+     *
      * @return p0 - starting point of the ray
      */
     public Point3D getP0() {
@@ -38,6 +40,7 @@ public class Ray {
 
     /**
      * Get the direction of the ray
+     *
      * @return the vector that represents the direction of the ray.
      */
     public Vector getDir() {
@@ -59,7 +62,7 @@ public class Ray {
 
     @Override
     public String toString() {
-        return  "p0=" + p0 +
+        return "p0=" + p0 +
                 ", dir=" + dir;
     }
 }

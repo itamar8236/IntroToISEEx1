@@ -6,7 +6,8 @@ import static primitives.Util.*;
 /**
  * Test program for the 1st stage
  * <p>
- * Avraham Glasberg 206218745 & Itamar Cohen 318558236
+ * Avraham Glasberg 206218745 Avraham0g0@gmail.com
+ * & Itamar Cohen 318558236 itamar8236@gmail.com
  *
  * @author Dan Zilberstein
  */

@@ -120,12 +120,15 @@ public class Vector {
         double v1 = other.head.x.coord;
         double v2 = other.head.y.coord;
         double v3 = other.head.z.coord;
-
-        return new Vector(
-                u2 * v3 - u3 * v2,
-                u3 * v1 - u1 * v3,
-                u1 * v2 - u2 * v1
-        );
+        try {
+            return new Vector(
+                    u2 * v3 - u3 * v2,
+                    u3 * v1 - u1 * v3,
+                    u1 * v2 - u2 * v1
+            );
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalStateException("Cross product returned the zero vector!");
+        }
     }
 
     /**

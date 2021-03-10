@@ -6,14 +6,15 @@ import primitives.*;
  * class for represent Cylinder
  */
 public class Cylinder extends Tube {
-    double height;
+    final double height;
 
     /**
      * Constructor for Cylinder class.
      *
      * @param height are the height of the Cylinder
      */
-    public Cylinder(double height) {
+    public Cylinder(Ray axisRay, double radius, double height) {
+        super(axisRay, radius);
         this.height = height;
     }
 

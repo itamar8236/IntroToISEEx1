@@ -9,15 +9,29 @@ public class Tube implements Geometry {
     /**
      * the axis ray of the Cylinder
      */
-    protected Ray axisRay;
+    protected final Ray axisRay;
     /**
      * the radius of the Cylinder
      */
-    protected double radius;
+    protected final double radius;
+
+    public Tube(Ray axisRay, double radius) {
+        this.axisRay = axisRay;
+        this.radius = radius;
+    }
 
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        Vector PP0 = point3D.subtract(axisRay.getP0());
+        double t = axisRay.getDir().dotProduct(PP0);
+
+        Point3D O = axisRay.getP0().add(PP0.scale(t));
+
+        Vector N = point3D.subtract(O);
+
+        N.normalize();
+
+        return N;
     }
 
     /**

@@ -127,7 +127,7 @@ public class Vector {
                     u1 * v2 - u2 * v1
             );
         } catch (IllegalArgumentException ex) {
-            throw new IllegalStateException("Cross product returned the zero vector!");
+            throw new IllegalArgumentException("Cross product returned the zero vector!");
         }
     }
 

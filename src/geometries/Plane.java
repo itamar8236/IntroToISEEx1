@@ -9,11 +9,11 @@ public class Plane implements Geometry {
     /**
      * q0 is point in the plane
      */
-    Point3D q0;
+    final Point3D q0;
     /**
      * normal of the plane
      */
-    Vector normal;
+    final Vector normal;
 
     /**
      * ctor
@@ -35,7 +35,14 @@ public class Plane implements Geometry {
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         q0 = p1;
-        normal = null; // need implementation
+
+        Vector U = p2.subtract(p1);
+        Vector V = p3.subtract(p1);
+
+        Vector N = U.crossProduct(V);
+
+        N.normalize();
+        normal = N;
     }
 
     /**
@@ -47,18 +54,9 @@ public class Plane implements Geometry {
         return q0;
     }
 
-    /**
-     * implaments of the interface Geometry
-     *
-     * @return normal
-     */
-    public Vector getNormal() {
-        return normal;
-    }
-
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        return normal;
     }
 
     @Override

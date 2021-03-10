@@ -9,11 +9,11 @@ public class Sphere implements Geometry {
     /**
      * point of the center of the sphere
      */
-    Point3D center;
+    final Point3D center;
     /**
      * the radius of the sphere
      */
-    double radius;
+    final double radius;
 
     /**
      * ctor
@@ -54,6 +54,10 @@ public class Sphere implements Geometry {
 
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        Vector N = point3D.subtract(center);
+
+        N.normalize();
+
+        return N;
     }
 }

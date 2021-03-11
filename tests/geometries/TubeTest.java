@@ -13,12 +13,8 @@ class TubeTest {
     void getNormal() {
         Tube tb = new Tube(new Ray(Point3D.ZERO, new Vector(0, 1, 0)), 2);
 
-        try{
-            Vector N = tb.getNormal(new Point3D(0, 0, 2));
-            assertEquals(new Vector(0, 0, 1), N);
-        }
-        catch (IllegalArgumentException ex){
-            fail("Wrong!");
-        }
+        Vector N = tb.getNormal(new Point3D(0, 0, 2));
+
+        assertEquals(new Vector(0, 0, 1), N);
     }
 }

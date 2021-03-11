@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import static primitives.Util.*;
 /**
  * class for represent Cylinder
  */
@@ -24,6 +25,10 @@ public class Tube implements Geometry {
     public Vector getNormal(Point3D point3D) {
         Vector PP0 = point3D.subtract(axisRay.getP0());
         double t = axisRay.getDir().dotProduct(PP0);
+
+        //if the vector pp0 is vertical to the direction, and the scale product returns the 0 vector.
+        if(alignZero(t) == 0)
+            return PP0.normalized();
 
         Point3D O = axisRay.getP0().add(PP0.scale(t));
 

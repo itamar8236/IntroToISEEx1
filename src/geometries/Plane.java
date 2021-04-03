@@ -2,6 +2,10 @@ package geometries;
 
 import primitives.*;
 
+import static primitives.Util.*;
+
+import java.util.List;
+
 /**
  * class for represent Plane
  */
@@ -65,5 +69,22 @@ public class Plane implements Geometry {
                 "q0=" + q0 +
                 ", normal=" + normal +
                 '}';
+    }
+
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        double nv = normal.dotProduct(v);
+        if (isZero(nv)) // the ray parallel to the plane
+            return  null;
+
+        double t =alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
+
+        if (t > 0)
+            return List.of(P0.add(v.scale(t)));
+
+        return null;
     }
 }

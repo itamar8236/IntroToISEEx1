@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * class for represent Cylinder
  */
@@ -50,5 +52,10 @@ public class Cylinder extends Tube {
                 ", axisRay=" + axisRay +
                 ", radius=" + radius +
                 '}';
+    }
+
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        return super.findIntsersections(ray);
     }
 }

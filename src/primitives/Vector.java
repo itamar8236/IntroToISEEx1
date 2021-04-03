@@ -153,11 +153,13 @@ public class Vector {
      * @return The normalized vector.
      */
     public Vector normalized() {
-        double u1 = head.x.coord;
-        double u2 = head.y.coord;
-        double u3 = head.z.coord;
-        double len = this.length();
-        return new Vector(u1 / len, u2 / len, u3 / len);
+        Vector v = new Vector(
+        head.x.coord,
+        head.y.coord,
+        head.z.coord
+        );
+
+        return v.normalize();
     }
 
     /**
@@ -167,7 +169,9 @@ public class Vector {
      * @return The normalized vector.
      */
     public Vector normalize() {
-        head = this.normalized().head;
+        double len = this.length();
+
+        head = new Point3D(head.x.coord / len, head.y.coord / len, head.z.coord / len);
         return this;
     }
 

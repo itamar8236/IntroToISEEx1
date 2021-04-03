@@ -4,7 +4,7 @@ import static java.lang.System.out;
 import static primitives.Util.*;
 
 /**
- * Test program for the 1st stage
+ * Test program for the first stage
  * <p>
  * Avraham Glasberg 206218745 Avraham0g0@gmail.com
  * & Itamar Cohen 318558236 itamar8236@gmail.com

@@ -29,10 +29,10 @@ public class Geometries implements Intersectable {
 
 
     @Override
-    public List<Point3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> result = null;
         for (Intersectable elemenet: this.intersectables) {
-            List<Point3D> interList = elemenet.findIntsersections(ray);
+            List<Point3D> interList = elemenet.findIntersections(ray);
             if (interList != null) {
                 if (result == null)
                     result = new LinkedList<>();

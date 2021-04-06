@@ -67,7 +67,7 @@ public class Sphere implements Geometry {
 
 
     @Override
-    public List<Point3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
 
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
@@ -75,27 +75,32 @@ public class Sphere implements Geometry {
         if (center.equals(P0)) {
             throw new IllegalArgumentException("ray origin cannot be at the Sphere's center");
         }
-        Vector u = center.subtract(P0);
+        try {
+            Vector u = center.subtract(P0);
 
-        double tm = alignZero(u.dotProduct(v));
-        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
+            double tm = alignZero(u.dotProduct(v));
+            double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
 
-        if(d > radius)
-            return null;
+            if (d >= radius)
+                return null;
 
-        double th = alignZero(Math.sqrt(radius * radius - d * d));
+            double th = alignZero(Math.sqrt(radius * radius - d * d));
 
-        double t1 = alignZero(tm - th);
-        double t2 = alignZero(tm + th);
+            double t1 = alignZero(tm - th);
+            double t2 = alignZero(tm + th);
 
-        if (t1 > 0 && t2 > 0)
-            return List.of(P0.add(v.scale(t1)), P0.add(v.scale(t2)));
+            if (t1 > 0 && t2 > 0)
+                return List.of(P0.add(v.scale(t1)), P0.add(v.scale(t2)));
 
-        else if (t1 > 0)
-            return List.of(P0.add(v.scale(t1)));
+            else if (t1 > 0)
+                return List.of(P0.add(v.scale(t1)));
 
-        else if (t2 > 0)
-            return List.of(P0.add(v.scale(t2)));
+            else if (t2 > 0)
+                return List.of(P0.add(v.scale(t2)));
+
+        } catch (IllegalArgumentException ex) { // the P0 point is the center of the sphere
+            return List.of(P0.add(v.scale(radius)));
+        }
 
         return null;
     }

@@ -72,7 +72,7 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
 

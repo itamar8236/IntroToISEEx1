@@ -52,6 +52,10 @@ public class Point3D {
         this.z = new Coordinate(z);
     }
 
+    public double getX() { return x.coord; }
+    public double getY() { return y.coord; }
+    public double getZ() { return z.coord; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

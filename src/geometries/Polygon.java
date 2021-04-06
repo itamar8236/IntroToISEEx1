@@ -90,8 +90,8 @@ public class Polygon implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntsersections(Ray ray) {
-        List<Point3D> result = plane.findIntsersections(ray);
+    public List<Point3D> findIntersections(Ray ray) {
+        List<Point3D> result = plane.findIntersections(ray);
         if (result != null) {
             Point3D P0 = ray.getP0();
             Vector v = ray.getDir();

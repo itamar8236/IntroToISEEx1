@@ -66,7 +66,61 @@ public class Tube implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Point3D Pa = axisRay.getP0();
+        Vector Va = axisRay.getDir();
+
+        double A, B, C;
+
+        Vector VecA = v;
+        double Vva = v.dotProduct(Va);
+
+        try {
+            if (!isZero(Vva))
+                VecA = v.subtract(Va.scale(Vva));
+
+            A = VecA.lengthSquared();
+        }
+        catch (IllegalArgumentException ex) { // the ray is parallel to the axisRay
+            return null;
+        }
+
+        try {
+            Vector DeltaP = P0.subtract(Pa);
+            Vector DeltaPMinusDeltaPVaVa = DeltaP;
+            double DeltaPVa = DeltaP.dotProduct(Va);
+
+            if (!isZero(DeltaPVa))
+                DeltaPMinusDeltaPVaVa = DeltaP.subtract(Va.scale(DeltaPVa));
+
+            B = 2 * (VecA.dotProduct(DeltaPMinusDeltaPVaVa));
+            C = DeltaPMinusDeltaPVaVa.lengthSquared() - radius * radius;
+        }
+        catch (IllegalArgumentException ex) {
+            B = 0;
+            C = -1 * radius * radius;
+        }
+
+        double Disc = alignZero(B * B - 4 * A * C);
+
+        if (Disc <= 0)
+            return null;
+
+        double t1, t2;
+
+        t1 = alignZero(-B + Math.sqrt(Disc)) / (2 * A);
+        t2 = alignZero(-B - Math.sqrt(Disc)) / (2 * A);
+
+        if (t1 > 0 && t2 > 0)
+            return List.of(P0.add(v.scale(t1)), P0.add(v.scale(t2)));
+        if (t1 > 0)
+            return List.of(P0.add(v.scale(t1)));
+        if (t2 > 0)
+            return List.of(P0.add(v.scale(t2)));
+
         return null;
     }
 }

@@ -73,16 +73,20 @@ public class Plane implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
+        // the start of the ray
         Point3D P0 = ray.getP0();
+        // the direction of the ray
         Vector v = ray.getDir();
 
+        // nv is the denominator of calculate t
         double nv = normal.dotProduct(v);
         if (isZero(nv)) // the ray parallel to the plane
             return null;
         try {
+            // the solution of the intersection
             double t = alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
 
-            if (t > 0)
+            if (t > 0) // take only positive solution
                 return List.of(P0.add(v.scale(t)));
 
         } catch (IllegalArgumentException ex) { // when P0 = q0

@@ -6,9 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * class for represent Cylinder
+ *
+ * class to represent Cylinder
  */
 public class Cylinder extends Tube {
+    /**
+     * the height of the cylinder
+     */
     final double height;
 
     /**
@@ -57,13 +61,17 @@ public class Cylinder extends Tube {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
+        //P1 and P2 in the cylinder, the center of the bottom and upper bases
         Point3D p1 = axisRay.getP0();
         Point3D p2 = p1.add(axisRay.getDir().scale(height));
         Vector Va = axisRay.getDir();
+
         List<Point3D> lst = super.findIntersections(ray);
 
+        //the intersections with the finite cylinder
         List<Point3D> result = new LinkedList<>();
 
+        //Step 1 - checking if the intersections with the tube are points on the finite cylinder
         if (lst != null) {
             for (Point3D p : lst) {
                 if (Va.dotProduct(p.subtract(p1)) > 0 && Va.dotProduct(p.subtract(p2)) < 0)
@@ -71,28 +79,39 @@ public class Cylinder extends Tube {
             }
         }
 
-        Plane bottomBase = new Plane(p1, Va);
-        Plane upperBase = new Plane(p2, Va);
-        Point3D p;
+        //Step 2 - checking the intersections with the bases
 
-        // ======================================================
-        // intersection with the bases:
-        lst = bottomBase.findIntersections(ray);
+        //cannot be more than 2 intersections
+        if(result.size() < 2) {
+            //creating 2 planes for the 2 bases
+            Plane bottomBase = new Plane(p1, Va);
+            Plane upperBase = new Plane(p2, Va);
+            Point3D p;
 
-        if (lst != null) {
-            p = lst.get(0);
-            if (p.distanceSquared(p1) < radius * radius)
-                result.add(p);
+            // ======================================================
+            // intersection with the bases:
+
+            //intersections with the bottom bases
+            lst = bottomBase.findIntersections(ray);
+
+            if (lst != null) {
+                p = lst.get(0);
+                //checking if the intersection is on the cylinder base
+                if (p.distanceSquared(p1) < radius * radius)
+                    result.add(p);
+            }
+
+            //intersections with the upper bases
+            lst = upperBase.findIntersections(ray);
+
+            if (lst != null) {
+                p = lst.get(0);
+                //checking if the intersection is on the cylinder base
+                if (p.distanceSquared(p2) < radius * radius)
+                    result.add(p);
+            }
         }
-
-        lst = upperBase.findIntersections(ray);
-
-        if (lst != null) {
-            p = lst.get(0);
-            if (p.distanceSquared(p2) < radius * radius)
-                result.add(p);
-        }
-
+        //return null if there are no intersections.
         return result.size() == 0 ? null : result;
 
 

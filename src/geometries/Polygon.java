@@ -91,29 +91,36 @@ public class Polygon implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
+        // result is the intersection with the plane of the polygon
         List<Point3D> result = plane.findIntersections(ray);
-        if (result != null) {
+        if (result != null) { // there is intersection
+            // checking if the intersection is inside the polygon:
+
             Point3D P0 = ray.getP0();
             Vector v = ray.getDir();
 
             LinkedList<Vector> Vi = new LinkedList<>();
 
+            // calculate Vi = Pi - P0
             for (Point3D p : vertices) {
                 Vi.add(p.subtract(P0));
             }
 
+            // calculate the first dot product for finding the sign
             Vector N1 = (Vi.get(0).crossProduct(Vi.get(1))).normalized();
             double Nv = v.dotProduct(N1);
             if (isZero(Nv))
                 return null;
-            boolean sign = Nv > 0;
 
+            boolean positiveSign = Nv > 0;
+
+            // check if all the Ni dot product V have the same sign:
             for (int i = 1; i < vertices.size(); i++) {
                 Vector Ni = (Vi.get(i).crossProduct(Vi.get((i + 1) % vertices.size()))).normalized();
                 Nv = v.dotProduct(Ni);
                 if (isZero(Nv))
                     return null;
-                if (Nv > 0 && !sign || Nv < 0 && sign)
+                if (Nv > 0 && !positiveSign || Nv < 0 && positiveSign)
                     return null;
             }
         }

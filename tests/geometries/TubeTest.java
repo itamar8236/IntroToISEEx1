@@ -28,6 +28,10 @@ class TubeTest {
         assertEquals(new Vector(1.65, 0, 1.13).normalized(), N, "Tube's normal fail");
     }
 
+    /**
+     * Test method for
+     * {@link geometries.Tube#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
 

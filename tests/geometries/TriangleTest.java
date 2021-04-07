@@ -27,7 +27,7 @@ class TriangleTest {
     }
 
     /**
-     * 
+     *
      * Test method for
      * {@link geometries.Triangle#findIntersections(Ray)}.
      */

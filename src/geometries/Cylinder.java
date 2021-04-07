@@ -33,14 +33,14 @@ public class Cylinder extends Tube {
     @Override
     public Vector getNormal(Point3D point3D) {
         //case 1 - point on the bottom base
-        if(point3D.subtract(axisRay.getP0()).lengthSquared() < radius * radius)
+        if (point3D.subtract(axisRay.getP0()).lengthSquared() < radius * radius)
             return axisRay.getDir().scale(-1);
         else {
             Point3D p = axisRay.getP0().add(axisRay.getDir().scale(height));
             //case 2 - point on the upper base
             if (point3D.subtract(p).lengthSquared() < radius * radius)
                 return axisRay.getDir();
-            //case 3 - point on the side, tube's case.
+                //case 3 - point on the side, tube's case.
             else
                 return super.getNormal(point3D);
         }
@@ -67,7 +67,7 @@ public class Cylinder extends Tube {
         if (lst != null) {
             for (Point3D p : lst) {
                 if (Va.dotProduct(p.subtract(p1)) > 0 && Va.dotProduct(p.subtract(p2)) < 0)
-                    result.add(p);
+                    result.add(0, p);
             }
         }
 
@@ -79,7 +79,7 @@ public class Cylinder extends Tube {
         // intersection with the bases:
         lst = bottomBase.findIntersections(ray);
 
-        if  (lst != null) {
+        if (lst != null) {
             p = lst.get(0);
             if (p.distanceSquared(p1) < radius * radius)
                 result.add(p);
@@ -87,15 +87,13 @@ public class Cylinder extends Tube {
 
         lst = upperBase.findIntersections(ray);
 
-        if  (lst != null) {
+        if (lst != null) {
             p = lst.get(0);
             if (p.distanceSquared(p2) < radius * radius)
                 result.add(p);
         }
 
         return result.size() == 0 ? null : result;
-
-
 
 
     }

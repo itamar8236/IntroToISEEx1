@@ -78,12 +78,16 @@ public class Plane implements Geometry {
 
         double nv = normal.dotProduct(v);
         if (isZero(nv)) // the ray parallel to the plane
-            return  null;
+            return null;
+        try {
+            double t = alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
 
-        double t =alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
+            if (t > 0)
+                return List.of(P0.add(v.scale(t)));
 
-        if (t > 0)
-            return List.of(P0.add(v.scale(t)));
+        } catch (IllegalArgumentException ex) { // when P0 = q0
+            return null;
+        }
 
         return null;
     }

@@ -132,11 +132,11 @@ public class Tube implements Geometry {
 
         //taking all positive solutions
         if (t1 > 0 && t2 > 0)
-            return List.of(P0.add(v.scale(t1)), P0.add(v.scale(t2)));
+            return List.of(ray.getPoint(t1), ray.getPoint(t2));
         if (t1 > 0)
-            return List.of(P0.add(v.scale(t1)));
+            return List.of(ray.getPoint(t1));
         if (t2 > 0)
-            return List.of(P0.add(v.scale(t2)));
+            return List.of(ray.getPoint(t2));
 
         //all non-positive solutions
         return null;

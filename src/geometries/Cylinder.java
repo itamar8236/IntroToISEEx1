@@ -63,7 +63,7 @@ public class Cylinder extends Tube {
     public List<Point3D> findIntersections(Ray ray) {
         //P1 and P2 in the cylinder, the center of the bottom and upper bases
         Point3D p1 = axisRay.getP0();
-        Point3D p2 = p1.add(axisRay.getDir().scale(height));
+        Point3D p2 = axisRay.getPoint(height);
         Vector Va = axisRay.getDir();
 
         List<Point3D> lst = super.findIntersections(ray);

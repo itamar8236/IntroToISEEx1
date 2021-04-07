@@ -87,7 +87,7 @@ public class Plane implements Geometry {
             double t = alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
 
             if (t > 0) // take only positive solution
-                return List.of(P0.add(v.scale(t)));
+                return List.of(ray.getPoint(t));
 
         } catch (IllegalArgumentException ex) { // when P0 = q0
             return null;

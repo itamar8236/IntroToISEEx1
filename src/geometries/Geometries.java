@@ -7,38 +7,50 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * class of collection of intersectable classes
+ */
 public class Geometries implements Intersectable {
 
+    /**
+     * list of intersectable classes
+     */
     private List<Intersectable> intersectables = null;
 
+    /**
+     * ctor
+     */
     public Geometries() {
         intersectables = new LinkedList<>();
     }
 
+    /**
+     * ctor
+     * @param intersectables params of intersectable
+     */
     public Geometries(Intersectable... intersectables) {
         this.intersectables = new LinkedList<>();
         add(intersectables);
     }
 
+    /**
+     * add intersectable items to the collection
+     * @param intersectables params of the items
+     */
     private void add(Intersectable... intersectables){
-//        for(Intersectable item: intersectables){
-//            this.intersectables.add(item);
-//        }
         this.intersectables.addAll(Arrays.asList(intersectables));
     }
 
-
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result = null;
-        for (Intersectable elemenet: this.intersectables) {
-            List<Point3D> interList = elemenet.findIntersections(ray);
+        List<Point3D> result = new LinkedList<>();
+
+        for (Intersectable element: this.intersectables) {
+            List<Point3D> interList = element.findIntersections(ray);
             if (interList != null) {
-                if (result == null)
-                    result = new LinkedList<>();
                 result.addAll(interList);
             }
         }
-        return result;
+        return result.size() == 0 ? null : result;
     }
 }

@@ -73,7 +73,7 @@ public class Tube implements Geometry {
         Point3D Pa = axisRay.getP0();
         Vector Va = axisRay.getDir();
 
-        //coefficient for the At^2 + Bt + C equation
+        //coefficient for the At^2 + Bt + C equation.
         double A, B, C;
 
         //(v,u) = v dot product u

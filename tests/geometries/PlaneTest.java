@@ -27,6 +27,10 @@ class PlaneTest {
         assertEquals(new Vector(-1, 0, 0), pl.getNormal(null), "Plane getNormal test fail");
     }
 
+    /**
+     * Test method for
+     * {@link geometries.Plane#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
         Plane pl = new Plane(new Point3D(0, 0, 1), new Vector(1, 1, 1));

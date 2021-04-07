@@ -89,6 +89,10 @@ public class PolygonTest {
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)), "Bad normal to triangle");
     }
 
+    /**
+     * Test method for
+     * {@link geometries.Polygon#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
         // ============ Equivalence Partitions Tests ==============

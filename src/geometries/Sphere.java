@@ -76,19 +76,26 @@ public class Sphere implements Geometry {
             throw new IllegalArgumentException("ray origin cannot be at the Sphere's center");
         }
         try {
+            // u = O - P0
             Vector u = center.subtract(P0);
 
+            // tm = v dot product u
             double tm = alignZero(u.dotProduct(v));
+            // d = sqrt(u^2 - tm^2)
             double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
 
+            // there are no intersections
             if (d >= radius)
                 return null;
 
+            // th = sqrt( r^2 - d^2)
             double th = alignZero(Math.sqrt(radius * radius - d * d));
 
+            // the solutions are tm +- th
             double t1 = alignZero(tm - th);
             double t2 = alignZero(tm + th);
 
+            // take only 𝒕 > 𝟎:
             if (t1 > 0 && t2 > 0)
                 return List.of(P0.add(v.scale(t1)), P0.add(v.scale(t2)));
 

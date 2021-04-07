@@ -34,6 +34,10 @@ class CylinderTest {
         assertEquals(new Vector(1.65, 0, 1.13).normalized(), cylinder.getNormal(new Point3D(1.65, 4.1, 1.13)), "Case 3 fail");
     }
 
+    /**
+     * Test method for
+     * {@link geometries.Cylinder#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
         Cylinder cylinder = new Cylinder(new Ray(new Point3D(2,0,0), new Vector(0,0,1)), 1d, 2d);
@@ -146,5 +150,46 @@ class CylinderTest {
         result = cylinder.findIntersections(new Ray(new Point3D(3,0,0), new Vector(1,0,0)));
         assertNull(result, "Wrong number of points");
 
+        //TC17 ray starts from the surface to outside
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,0), new Vector(1,1,1)));
+        assertNull(result, "Wrong number of points");
+
+        //TC18 ray starts from the surface to inside
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,0.5), new Vector(-1,0,0)));
+        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(List.of(new Point3D(1,0,0.5)), result, "Bad intersection point");
+
+        //TC19 ray starts from the center
+
+        result = cylinder.findIntersections(new Ray(new Point3D(2,0,0), new Vector(1,0,1)));
+        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(List.of(new Point3D(3,0,1)), result, "Bad intersection point");
+
+        //TC20 prolongation of ray crosses cylinder
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,0), new Vector(1,0,0)));
+        assertNull(result, "Wrong number of points");
+
+        //TC21 ray is on the surface starts before cylinder
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,-1), new Vector(0,0,1)));
+        assertNull(result, "Wrong number of points");
+
+        //TC22 ray is on the surface starts at bottom's base
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,0), new Vector(0,0,1)));
+        assertNull(result, "Wrong number of points");
+
+        //TC23 ray is on the surface starts on the surface
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,1), new Vector(0,0,1)));
+        assertNull(result, "Wrong number of points");
+
+        //TC24 ray is on the surface starts at top's base
+
+        result = cylinder.findIntersections(new Ray(new Point3D(3,0,2), new Vector(0,0,1)));
+        assertNull(result, "Wrong number of points");
     }
 }

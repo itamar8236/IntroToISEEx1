@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * class for represent Plane
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     /**
      * q0 is point in the plane
      */
@@ -72,7 +72,7 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         // the start of the ray
         Point3D P0 = ray.getP0();
         // the direction of the ray
@@ -87,7 +87,7 @@ public class Plane implements Geometry {
             double t = alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
 
             if (t > 0) // take only positive solution
-                return List.of(ray.getPoint(t));
+                return List.of(new GeoPoint(this, ray.getPoint(t)));
 
         } catch (IllegalArgumentException ex) { // when P0 = q0
             return null;

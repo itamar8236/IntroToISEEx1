@@ -8,7 +8,7 @@ import static primitives.Util.*;
 /**
  * class for represent Cylinder
  */
-public class Tube implements Geometry {
+public class Tube extends Geometry {
     /**
      * the axis ray of the Cylinder
      */
@@ -66,7 +66,7 @@ public class Tube implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -132,11 +132,11 @@ public class Tube implements Geometry {
 
         //taking all positive solutions
         if (t1 > 0 && t2 > 0)
-            return List.of(ray.getPoint(t1), ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
         if (t1 > 0)
-            return List.of(ray.getPoint(t1));
+            return List.of(new GeoPoint(this , ray.getPoint(t1)));
         if (t2 > 0)
-            return List.of(ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
 
         //all non-positive solutions
         return null;

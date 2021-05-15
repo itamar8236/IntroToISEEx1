@@ -9,7 +9,7 @@ import static primitives.Util.*;
 /**
  * class for represent Sphere
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     /**
      * point of the center of the sphere
      */
@@ -67,7 +67,7 @@ public class Sphere implements Geometry {
 
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
 
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
@@ -97,16 +97,16 @@ public class Sphere implements Geometry {
 
             // take only 𝒕 > 𝟎:
             if (t1 > 0 && t2 > 0)
-                return List.of(ray.getPoint(t1), ray.getPoint(t2));
+                return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
 
             else if (t1 > 0)
-                return List.of(ray.getPoint(t1));
+                return List.of(new GeoPoint(this, ray.getPoint(t1)));
 
             else if (t2 > 0)
-                return List.of(ray.getPoint(t2));
+                return List.of(new GeoPoint(this, ray.getPoint(t2)));
 
         } catch (IllegalArgumentException ex) { // the P0 point is the center of the sphere
-            return List.of(ray.getPoint(radius));
+            return List.of(new GeoPoint(this, ray.getPoint(radius)));
         }
 
         return null;

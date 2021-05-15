@@ -7,32 +7,66 @@ import scene.Scene;
 
 import java.util.MissingResourceException;
 
+/**
+ * Class for rendering scene into image
+ */
 public class Render {
+    /**
+     * The image writer
+     */
     ImageWriter imageWriter = null;
+    /**
+     * The camera
+     */
     Camera camera = null;
+    /**
+     * The ray tracer
+     */
     RayTracerBase rayTracerBase = null;
 
+    /**
+     * Set for image writer, using chaining methods
+     * @param imageWriter The image writer to set
+     * @return The render
+     */
     public Render setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * Set for the camera
+     * @param camera The camerq to set
+     * @return The render
+     */
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;
     }
 
+    /**
+     * Set for the race tracer base
+     * @param rayTracerBase The ray tracer base to set
+     * @return The render
+     */
     public Render setRayTracerBase(RayTracerBase rayTracerBase) {
         this.rayTracerBase = rayTracerBase;
         return this;
     }
 
+    /**
+     * Checking if the image writer is not null.
+     */
     private void checkImageWriter() {
         if (imageWriter == null) {
             throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
         }
     }
 
+    /**
+     * Render the image.
+     * checking that all fields are not null, and writing all the scene's pixels
+     */
     public void renderImage() {
         try {
             checkImageWriter();
@@ -61,6 +95,11 @@ public class Render {
         }
     }
 
+    /**
+     * Printing the image's grid
+     * @param interval The interval of the squares
+     * @param color The color of the lines.
+     */
     public void printGrid(int interval, Color color) {
         checkImageWriter();
 
@@ -76,6 +115,9 @@ public class Render {
         }
     }
 
+    /**
+     * Write the scene into an image.
+     */
     public void writeToImage() {
         checkImageWriter();
 

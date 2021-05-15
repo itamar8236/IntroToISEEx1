@@ -52,6 +52,11 @@ public class Ray {
         return p0.add(dir.scale(t));
     }
 
+    /**
+     *
+     * @param lst  list of 3D points
+     * @return point that is the closest point to the start of the ray
+     */
     public Point3D findClosestPoint (List<Point3D> lst) {
         Point3D result = null;
         double closestDis = Double.MAX_VALUE;

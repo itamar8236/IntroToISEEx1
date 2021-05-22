@@ -1,8 +1,12 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class to represent scene
@@ -19,11 +23,16 @@ public class Scene {
     /**
      * The ambient light of the scene
      */
-    public AmbientLight ambientLight;
+    public AmbientLight ambientLight = new AmbientLight();
     /**
      * The objects in the scene
      */
     public Geometries geometries = null;
+
+    /**
+     * list of the lights in the scene
+     */
+    public List<LightSource> lights = new LinkedList<LightSource>();
 
     /**
      * Constructor
@@ -32,6 +41,16 @@ public class Scene {
     public Scene(String name) {
         this.name = name;
         geometries = new Geometries();
+    }
+
+    /**
+     * setter of the list lights
+     * @param lights the list
+     * @return this class
+     */
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
     }
 
     /**

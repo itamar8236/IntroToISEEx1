@@ -2,6 +2,9 @@ package elements;
 
 import primitives.Color;
 
+/**
+ * abstract class to represent various kinds of lights
+ */
 abstract class Light {
     /**
      * The intensity color

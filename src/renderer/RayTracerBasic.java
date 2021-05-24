@@ -26,7 +26,7 @@ public class RayTracerBasic extends RayTracerBase {
     /**
      * calculate the color of point
      * @param geoPoint the point that needed the calculate it color
-     *@param ray the ray
+     * @param ray the ray
      * @return color of the point
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {

@@ -5,16 +5,17 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * spot light - light with direction from some position
+ * spot light - light from one point into a direction,
+ * the light's intensity is weaker as the angle is far from the main direction.
  */
 public class SpotLight extends PointLight {
     /**
-     * the direction of the light
+     * the main direction of the light
      */
     final private Vector direction;
 
     /**
-     * ctor of the class
+     * constructor of the class
      *  @param intensity the intensity light
      * @param position the position of the light
      * @param direction the direction of the light

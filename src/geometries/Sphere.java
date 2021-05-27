@@ -67,7 +67,7 @@ public class Sphere extends Geometry {
 
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
 
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
@@ -94,6 +94,12 @@ public class Sphere extends Geometry {
             // the solutions are tm +- th
             double t1 = alignZero(tm - th);
             double t2 = alignZero(tm + th);
+
+            //if t1 or t2 are bigger than the max distance, wll be set to negative value and won't count as intersections points
+            if(alignZero(t1-maxDistance)>0)
+                t1 = -1;
+            if(alignZero(t2-maxDistance)>0)
+                t2 = -1;
 
             // take only 𝒕 > 𝟎:
             if (t1 > 0 && t2 > 0)

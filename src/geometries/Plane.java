@@ -72,7 +72,7 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistnce) {
         // the start of the ray
         Point3D P0 = ray.getP0();
         // the direction of the ray
@@ -86,8 +86,10 @@ public class Plane extends Geometry {
             // the solution of the intersection
             double t = alignZero(normal.dotProduct(q0.subtract(P0)) / nv);
 
-            if (t > 0) // take only positive solution
-                return List.of(new GeoPoint(this, ray.getPoint(t)));
+            if (t > 0) { // take only positive solution
+                if(alignZero(t-maxDistnce)<=0)
+                    return List.of(new GeoPoint(this, ray.getPoint(t)));
+            }
 
         } catch (IllegalArgumentException ex) { // when P0 = q0
             return null;

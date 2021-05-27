@@ -42,11 +42,11 @@ public class Geometries implements Intersectable {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         List<GeoPoint> result = new LinkedList<>();
 
         for (Intersectable element: this.intersectables) {
-            List<GeoPoint> interList = element.findGeoIntersections(ray);
+            List<GeoPoint> interList = element.findGeoIntersections(ray, maxDistance);
             if (interList != null) {
                 result.addAll(interList);
             }

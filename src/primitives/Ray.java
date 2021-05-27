@@ -33,6 +33,12 @@ public class Ray {
         this.dir = dir.normalized();
     }
 
+    public Ray(Point3D point, Vector lightDirection, Vector n, double DELTA) {
+        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+        p0 = point.add(delta);
+        dir = lightDirection.normalized();
+    }
+
     /**
      * Get the head point of the ray
      *

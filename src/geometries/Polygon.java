@@ -90,9 +90,11 @@ public class Polygon extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         // result is the intersection with the plane of the polygon
-        List<GeoPoint> result = plane.findGeoIntersections(ray);
+        List<GeoPoint> result = plane.findGeoIntersections(ray, maxDistance);
+        if(result == null)
+            return result;
         if (result != null) { // there is intersection
             // checking if the intersection is inside the polygon:
 

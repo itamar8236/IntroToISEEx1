@@ -66,7 +66,7 @@ public class Tube extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -129,6 +129,12 @@ public class Tube extends Geometry {
 
         t1 = alignZero(-B + Math.sqrt(Disc)) / (2 * A);
         t2 = alignZero(-B - Math.sqrt(Disc)) / (2 * A);
+
+        //if t1 or t2 are bigger than the max distance, wll be set to negative value and won't count as intersections points
+        if(alignZero(t1-maxDistance)>0)
+            t1 = -1;
+        if(alignZero(t2-maxDistance)>0)
+            t2 = -1;
 
         //taking all positive solutions
         if (t1 > 0 && t2 > 0)

@@ -23,6 +23,11 @@ public class Ray {
     final Vector dir;
 
     /**
+     * TODO
+     */
+    private static final double DELTA = 0.1;
+
+    /**
      * Constructor for Ray class
      *
      * @param p0  The p0 start point
@@ -33,7 +38,8 @@ public class Ray {
         this.dir = dir.normalized();
     }
 
-    public Ray(Point3D point, Vector lightDirection, Vector n, double DELTA) {
+    public Ray(Point3D point, Vector lightDirection, Vector n) {
+        double vn = lightDirection.dotProduct(n);
         Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
         p0 = point.add(delta);
         dir = lightDirection.normalized();

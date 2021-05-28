@@ -17,6 +17,12 @@ public class Material {
      */
     public int nShininess = 0;
 
+    /**
+     * TODO
+     */
+    public double kr = 0;
+    public double kt = 0;
+
     //chaining methods:
 
     /**
@@ -48,4 +54,24 @@ public class Material {
         this.nShininess = nShininess;
         return this;
     }
+
+    /**
+     * TODO
+     * @param kr
+     */
+    public Material setKr(double kr) {
+        this.kr = kr;
+        return this;
+    }
+
+    /**
+     * TODO
+     * @param kt
+     * @return
+     */
+    public Material setKt(double kt) {
+        this.kt = kt;
+        return this;
+    }
+
 }

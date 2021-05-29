@@ -23,7 +23,7 @@ public class Ray {
     final Vector dir;
 
     /**
-     * TODO
+     * Delta for addition to the Ray to avoid unnecessary self-cutting
      */
     private static final double DELTA = 0.1;
 
@@ -38,6 +38,12 @@ public class Ray {
         this.dir = dir.normalized();
     }
 
+    /**
+     * Constructor for Ray class, adding Delta from the start point to avoid unnecessary self-cutting
+     * @param point The p0 start point
+     * @param lightDirection The direction of the ray as vector
+     * @param n normal of the object that include "point" for know the direction to add the Delta
+     */
     public Ray(Point3D point, Vector lightDirection, Vector n) {
         double vn = lightDirection.dotProduct(n);
         Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);

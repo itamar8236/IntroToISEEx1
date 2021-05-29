@@ -18,9 +18,12 @@ public class Material {
     public int nShininess = 0;
 
     /**
-     * TODO
+     * reflection factor
      */
     public double kr = 0;
+    /**
+     * transparency factor
+     */
     public double kt = 0;
 
     //chaining methods:
@@ -56,8 +59,9 @@ public class Material {
     }
 
     /**
-     * TODO
-     * @param kr
+     * setter of Kr
+     * @param kr the reflection factor
+     * @return the Material
      */
     public Material setKr(double kr) {
         this.kr = kr;
@@ -65,9 +69,9 @@ public class Material {
     }
 
     /**
-     * TODO
-     * @param kt
-     * @return
+     * setter of Kt
+     * @param kt the transparency factor
+     * @return the Material
      */
     public Material setKt(double kt) {
         this.kt = kt;

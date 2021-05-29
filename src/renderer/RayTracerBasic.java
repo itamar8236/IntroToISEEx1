@@ -11,9 +11,24 @@ import scene.Scene;
 import java.util.List;
 
 /**
- * class to represent ray tracer
+ * class to represent ray tracer basic class. inherits RayTracerBase class
  */
 public class RayTracerBasic extends RayTracerBase {
+
+    /**
+     * Constant value for the maximum level to calculate the color (preventing infinite recursion)
+     */
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * Constant value for the minimum calculation for the point's transparency
+     */
+    private static final double MIN_CALC_COLOR_K = 0.001;
+
+    /**
+     * Constant value for all k value (kkt kkr etc') send to a recursion function as below 1 until reaches MIN_CALC_COLOR_K
+     */
+    private static final double INITIAL_K = 1.0;
+
     /**
      * ctor of the class, based on the super class
      *
@@ -22,13 +37,6 @@ public class RayTracerBasic extends RayTracerBase {
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
-
-
-    /**
-     * TODO
-     */
-    private static final double INITIAL_K = 1.0;
-
 
     /**
      * calculate the color of point
@@ -50,13 +58,12 @@ public class RayTracerBasic extends RayTracerBase {
 
 
     /**
-     * TODO
-     *
-     * @param ls
-     * @param l
-     * @param n
-     * @param geoPoint
-     * @return
+     * Checks the transparency of the point for the calc color function.
+     * @param ls The light source of the scene
+     * @param l The light's direction
+     * @param n The normal from the object in the geo point
+     * @param geoPoint The point being tested to check it's color
+     * @return The amount of transparency of the point
      */
     private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1);
@@ -83,7 +90,8 @@ public class RayTracerBasic extends RayTracerBase {
      *
      * @param intersection The point on it you calculate the effects
      * @param ray          The camera view ray
-     * @return The color with the local effects
+     * @param k            The k value for the transparency calculation
+     * @return             The color with the local effects
      */
     private Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
         Vector v = ray.getDir();
@@ -111,23 +119,13 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * TODO
-     */
-    private static final int MAX_CALC_COLOR_LEVEL = 10;
-    /**
-     * TODO
-     */
-    private static final double MIN_CALC_COLOR_K = 0.001;
-
-    /**
-     * Calculate the local effect on the light
-     * TODO
-     *
-     * @param gp
-     * @param v
-     * @param level
-     * @param k
-     * @return
+     * Calculate the global effect on the point's color, recursion function because the light
+     * goint out of the object effect it as well
+     * @param gp The geo point
+     * @param v The direction from the  camera to the point
+     * @param level The level of the check. can't go forever or it'll be endless recursion
+     * @param k The k value for kkr and kkt
+     * @return The global effects on the color in the geo point
      */
     private Color calcGlobalEffects(GeoPoint gp, Vector v, int level, double k) {
         Color color = Color.BLACK;
@@ -144,13 +142,12 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * TODO
-     *
-     * @param ray
-     * @param level
-     * @param kx
-     * @param kkx
-     * @return
+     * Recursion function to calculate the global effects
+     * @param ray The light's ray
+     * @param level The level of the recursion to avoid endless loop
+     * @param kx The kr/tt
+     * @param kkx The kkr/kkt
+     * @return The effects on the color in the geo point
      */
     private Color calcGlobalEffect(Ray ray, int level, double kx, double kkx) {
         GeoPoint gp = findClosestIntersection(ray);
@@ -159,34 +156,31 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * TODO
-     *
-     * @param ray
-     * @return
+     * Calculate and find the closest intersection point to a ray
+     * @param ray The ray to find closest intersection point to
+     * @return The closest point
      */
     private GeoPoint findClosestIntersection(Ray ray) {
         return ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
     }
 
     /**
-     * TODO
-     *
-     * @param point
-     * @param v
-     * @param n
-     * @return
+     * Calculate the refracted ray in clear objects
+     * @param point The point the light hit the object
+     * @param v The light's direction
+     * @param n The normal from the object in the point
+     * @return The refracted ray of light
      */
     private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {
         return new Ray(point, v, n);
     }
 
     /**
-     * TODO
-     *
-     * @param point
-     * @param v
-     * @param n
-     * @return
+     * Calculate the reflected ray in clear objects
+     * @param point The point the light hit the object
+     * @param v The light's direction
+     * @param n The normal from the object in the point
+     * @return The reflected ray of light
      */
     private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
         double vn = v.dotProduct(n);

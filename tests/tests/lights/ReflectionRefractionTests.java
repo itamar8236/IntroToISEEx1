@@ -1,12 +1,11 @@
 package tests.lights;
 
+import geometries.*;
 import org.junit.jupiter.api.Test;
 
 
 
 import elements.*;
-import geometries.Sphere;
-import geometries.Triangle;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
@@ -115,6 +114,112 @@ public class ReflectionRefractionTests {
                 .setCamera(camera) //
                 .setRayTracerBase(new RayTracerBasic(scene));
 
+        render.renderImage();
+        render.writeToImage();
+    }
+
+    @Test
+    public void MyTest() {
+
+        Scene scene = new Scene("Test scene");
+
+        Camera camera = new Camera(
+                new Point3D(10, -20, 60),
+                new Vector(-20, -10, -90),
+                new Vector(0, 1, -1d / 9d))
+                .setViewPlaneSize(40, 40)
+                .setDistance(50);
+
+        scene.setBackground(Color.BLACK);
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+        // Geometries
+        //walls and mirror
+        scene.geometries.add(
+
+                new Plane(new Point3D(100, 0, 0), new Vector(1, 0, 0))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(0).setKt(0).setKr(0))
+                        .setEmission((new Color(java.awt.Color.GRAY).add(new Color(java.awt.Color.RED))).reduce(20)),
+
+                new Plane(new Point3D(-100, 0, 0), new Vector(0, 1, 0))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(0).setKt(0).setKr(0))
+                        .setEmission(new Color(java.awt.Color.GRAY).reduce(2)));
+
+        scene.lights.add(
+                new SpotLight(
+                        new Color(0, 0, 0),
+                        new Point3D(0, 40, 0),
+                        new Vector(0, -1, 0)
+                        ).setkL(0.0005)
+                         .setkQ(0.000005));
+
+        scene.lights.add(
+                new PointLight(
+                        new Color(255, 250, 0),
+                        new Point3D(0, 40, 0))
+                        .setkL(0.001).setkQ(0.0002));
+
+        scene.lights.add(
+                new DirectionalLight(
+                        new Color(50, 50, 50),
+                        new Vector(1, -1, -1)));
+
+        scene.geometries.add(
+                new Sphere(5, new Point3D(-20, -40, -50))
+                        .setEmission(new Color(java.awt.Color.WHITE).reduce(6))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Sphere(5, new Point3D(-10, -40, -50))
+                        .setEmission(new Color(java.awt.Color.GREEN).reduce(6))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Sphere(5, new Point3D(-15, -30, -50))
+                        .setEmission(new Color(java.awt.Color.BLUE).reduce(6))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Sphere(5, new Point3D(-30, -40, -50))
+                        .setEmission(new Color(java.awt.Color.WHITE).reduce(6))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Sphere(5, new Point3D(-25, -30, -50))
+                        .setEmission(new Color(java.awt.Color.GREEN).reduce(6))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Triangle(
+                        new Point3D(-12, -25, -50),
+                        new Point3D(-28, -25, -50),
+                        new Point3D(-20, -15, -50))
+                        .setEmission(new Color(java.awt.Color.BLUE))
+                        .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(1).setKr(0.3))
+        );
+
+        scene.geometries.add(
+                new Polygon(
+                        new Point3D(-120, -90, -149),
+                        new Point3D(-120, 150, -149),
+                        new Point3D(120, 150, -149),
+                        new Point3D(120, -90, -149)
+                )
+                        .setEmission(new Color(40, 40, 40))
+                        .setMaterial(new Material().setKd(0).setKs(0).setShininess(0).setKt(0).setKr(0.3)));
+
+        scene.geometries.add(
+                new Tube(new Ray(
+                        new Point3D(-35, -47, -50),
+                        new Vector(1, 0, 0)), 3)
+                        .setEmission(new Color(java.awt.Color.RED).reduce(5))
+                        .setMaterial(new Material().setKd(0).setKs(0).setShininess(0).setKt(0).setKr(0.3)
+                        ));
+
+        Render render = new Render() //
+                .setImageWriter(new ImageWriter("MyTest", 250, 250)) //
+                .setCamera(camera) //
+                .setRayTracerBase(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
     }

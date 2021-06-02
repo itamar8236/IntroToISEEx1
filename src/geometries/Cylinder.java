@@ -97,8 +97,10 @@ public class Cylinder extends Tube {
             if (lst != null) {
                 p = lst.get(0);
                 //checking if the intersection is on the cylinder base
-                if (p.point.distanceSquared(p1) < radius * radius)
-                    result.add(p);
+                if (p.point.distanceSquared(p1) < radius * radius) {
+                    result.add(new GeoPoint(this, p.point));
+                }
+
             }
 
             //intersections with the upper bases
@@ -108,13 +110,12 @@ public class Cylinder extends Tube {
                 p = lst.get(0);
                 //checking if the intersection is on the cylinder base
                 double d = p.point.distance(p2);
-                if (p.point.distanceSquared(p2) < radius * radius)
-                    result.add(p);
+                if (p.point.distanceSquared(p2) < radius * radius){
+                    result.add(new GeoPoint(this,p.point));
+                }
             }
         }
         //return null if there are no intersections.
         return result.size() == 0 ? null : result;
-
-
     }
 }

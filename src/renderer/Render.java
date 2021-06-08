@@ -5,6 +5,7 @@ import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
 
+import java.util.List;
 import java.util.MissingResourceException;
 
 /**
@@ -24,6 +25,20 @@ public class Render {
      */
     RayTracerBase rayTracerBase = null;
 
+    /**
+     * setter of superSampling
+     * @param superSampling the flag
+     * @return The render
+     */
+    public Render setSuperSampling(boolean superSampling) {
+        this.superSampling = superSampling;
+        return this;
+    }
+
+    /**
+     * flag of oparate the superSampling
+     */
+    boolean superSampling = false;
     /**
      * Set for image writer, using chaining methods
      * @param imageWriter The image writer to set
@@ -85,11 +100,18 @@ public class Render {
 
         int Nx = imageWriter.getNx();
         int Ny = imageWriter.getNy();
-
+        // write all pixels
         for (int i = 0; i < Ny; i++) {
             for (int j = 0; j < Nx; j++) {
-                Ray ray = camera.constructRayThroughPixel( Nx, Ny, j, i);
-                Color color = rayTracerBase.traceRay(ray);
+                Color color = Color.BLACK;
+                if (superSampling){
+                    List<Ray> rays = camera.constructRaysBeamThroughPixel( Nx, Ny, j, i);
+                    color = rayTracerBase.traceRays( rays );
+                }
+                else{
+                    Ray ray = camera.constructRayThroughPixel( Nx, Ny, j, i);
+                    color = rayTracerBase.traceRay( ray );
+                }
                 imageWriter.writePixel(j, i, color);
             }
         }

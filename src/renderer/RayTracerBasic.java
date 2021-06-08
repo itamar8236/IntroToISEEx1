@@ -233,4 +233,14 @@ public class RayTracerBasic extends RayTracerBase {
         return calcColor(closestPoint, ray)
                 .add(closestPoint.geometry.getEmission());
     }
+
+    @Override
+    public Color traceRays(List<Ray> rays) {
+        Color result = Color.BLACK;
+        for (Ray ray: rays) {
+            result = result.add(traceRay(ray));
+        }
+        result = result.reduce(rays.size());
+        return result;
+    }
 }

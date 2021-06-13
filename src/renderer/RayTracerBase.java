@@ -32,9 +32,10 @@ public abstract class RayTracerBase {
     public abstract Color traceRay(Ray ray);
 
     /**
-     * TODO
-     * @param ray
-     * @return
+     *
+     * function for finding the color of ray with scene
+     * @param rays the list of rays from the pixel
+     * @return the average color of the pixel according to the intersections of the rays
      */
     public abstract Color traceRays(List<Ray> rays);
 }

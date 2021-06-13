@@ -26,6 +26,11 @@ public class Render {
     RayTracerBase rayTracerBase = null;
 
     /**
+     * flag of oparate the superSampling
+     */
+    boolean superSampling = false;
+
+    /**
      * setter of superSampling
      * @param superSampling the flag
      * @return The render
@@ -35,10 +40,7 @@ public class Render {
         return this;
     }
 
-    /**
-     * flag of oparate the superSampling
-     */
-    boolean superSampling = false;
+
     /**
      * Set for image writer, using chaining methods
      * @param imageWriter The image writer to set

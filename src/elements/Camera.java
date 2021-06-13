@@ -41,6 +41,11 @@ public class Camera {
      */
     private double distance;
 
+    /**
+     * ns^2 is the number of rays in pixel
+     */
+    private int ns = 3;
+
 
 
 
@@ -185,15 +190,12 @@ public class Camera {
     /**
      * setter of ns
      * @param ns ns^2 is the number of rays in pixel
+     * @return the camrea
      */
-    public void setNs(int ns) {
+    public Camera setNs(int ns) {
         this.ns = ns;
+        return this;
     }
-
-    /**
-     * ns^2 is the number of rays in pixel
-     */
-    private int ns = 3;
 
     /**
      * construct rays beam through pixel according to Monta Carlo method

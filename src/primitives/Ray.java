@@ -1,22 +1,22 @@
-package primitives;
+/**
+ * @author Avraham & Itamar
+ */
 
-import geometries.Intersectable;
+package primitives;
 import static geometries.Intersectable.GeoPoint;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * Ray class is basic geometric class to represent geometric ray in space.
  * The class is using the basic classes Vector & Point3D to represent a ray.
- *
- * @author Avraham Glasberg & Itamar Cohen
  */
 public class Ray {
     /**
      * The 3D point value represent the p0 - starting point of the ray.
      */
     final Point3D p0;
+
     /**
      * The direction of the ray value, as vector(normalized).
      */
@@ -29,7 +29,6 @@ public class Ray {
 
     /**
      * Constructor for Ray class
-     *
      * @param p0  The p0 start point
      * @param dir The direction of the ray as vector
      */
@@ -53,7 +52,6 @@ public class Ray {
 
     /**
      * Get the head point of the ray
-     *
      * @return p0 - starting point of the ray
      */
     public Point3D getP0() {
@@ -62,19 +60,23 @@ public class Ray {
 
     /**
      * Get the direction of the ray
-     *
      * @return the vector that represents the direction of the ray.
      */
     public Vector getDir() {
         return dir;
     }
 
+    /**
+     * get point on the ray with distance from P0
+     * @param t the distance
+     * @return the point on the ray
+     */
     public Point3D getPoint (double t){
         return p0.add(dir.scale(t));
     }
 
     /**
-     * finding the closeset point to the start of the ray
+     * finding the closest point to the start of the ray
      * @param point3DS  list of 3D points
      * @return point that is the closest point to the start of the ray
      */
@@ -95,7 +97,7 @@ public class Ray {
     }
 
     /**
-     * finding the closeset GeoPoint to the start of the ray
+     * finding the closest GeoPoint to the start of the ray
      * @param geoPoints list of GeoPoints
      * @return GeoPoint that is the closest GeoPoint to the start of the ray
      */

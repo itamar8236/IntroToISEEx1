@@ -1,10 +1,12 @@
-package scene;
+/**
+ * @author Avraham & Itamar
+ */
 
+package scene;
 import elements.AmbientLight;
 import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,14 +18,17 @@ public class Scene {
      * The scene's name
      */
     public final String name;
+
     /**
      * The scene background color, default is black
      */
     public Color background = Color.BLACK;
+
     /**
      * The ambient light of the scene
      */
     public AmbientLight ambientLight = new AmbientLight();
+
     /**
      * The objects in the scene
      */
@@ -44,7 +49,7 @@ public class Scene {
     }
 
     /**
-     * setter of the list lights
+     * setter of the list lights, using chaining methods
      * @param lights the list
      * @return this class
      */
@@ -54,7 +59,7 @@ public class Scene {
     }
 
     /**
-     * Set fot background, using chaining methods
+     * Setter for background, using chaining methods
      * @param background The bacground color
      * @return The scene
      */
@@ -64,7 +69,7 @@ public class Scene {
     }
 
     /**
-     * Set for the ambient life, using chaining methods
+     * Setter for the ambient life, using chaining methods
      * @param ambientLight The ambient light to set
      * @return The scene
      */
@@ -74,7 +79,7 @@ public class Scene {
     }
 
     /**
-     * Set for geometries, using chaining methods
+     * Setter for geometries, using chaining methods
      * @param geometries The geometries objects
      * @return The scene
      */

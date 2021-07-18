@@ -4,19 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import elements.*;
 import geometries.*;
-import org.xml.sax.SAXException;
 import primitives.*;
-import renderer.*;
 import scene.Scene;
-
-import java.io.File;
-
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
-import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 
 class RenderTest {
@@ -76,7 +65,7 @@ class RenderTest {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracerBase(new RayTracerBasic(scene));
+                .setRayTracerBase(new BasicRayTracer(scene));
 
         render.renderImage();
         render.printGrid(100, new Color(java.awt.Color.YELLOW));
@@ -107,7 +96,7 @@ class RenderTest {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracerBase(new RayTracerBasic(scene));
+                .setRayTracerBase(new BasicRayTracer(scene));
 
         render.renderImage();
         render.printGrid(100, new Color(java.awt.Color.WHITE));
@@ -368,8 +357,9 @@ class RenderTest {
         Render render = new Render() //
                 .setImageWriter(new ImageWriter(testName, 500, 500)) //
                 .setCamera(camera) //
-                .setSuperSampling(superSampling)
-                .setRayTracerBase(new RayTracerBasic(scene));
+                .setAdaptiveSuperSampling(superSampling)
+                .setMultithreading(3)
+                .setRayTracerBase(new BasicRayTracer(scene));
         render.renderImage();
         render.writeToImage();
     }

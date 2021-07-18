@@ -1,12 +1,13 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package geometries;
-
 import primitives.*;
-
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
  * class to represent Cylinder
  */
 public class Cylinder extends Tube {
@@ -16,8 +17,7 @@ public class Cylinder extends Tube {
     final double height;
 
     /**
-     * Constructor for Cylinder class.
-     *
+     * Constructor for Cylinder class
      * @param height are the height of the Cylinder
      */
     public Cylinder(Ray axisRay, double radius, double height) {
@@ -27,7 +27,6 @@ public class Cylinder extends Tube {
 
     /**
      * get for height
-     *
      * @return height
      */
     public double getHeight() {
@@ -80,7 +79,6 @@ public class Cylinder extends Tube {
         }
 
         //Step 2 - checking the intersections with the bases
-
         //cannot be more than 2 intersections
         if(result.size() < 2) {
             //creating 2 planes for the 2 bases
@@ -100,7 +98,6 @@ public class Cylinder extends Tube {
                 if (p.point.distanceSquared(p1) < radius * radius) {
                     result.add(new GeoPoint(this, p.point));
                 }
-
             }
 
             //intersections with the upper bases

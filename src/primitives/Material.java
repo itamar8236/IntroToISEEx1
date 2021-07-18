@@ -1,3 +1,7 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package primitives;
 
 /**
@@ -5,7 +9,7 @@ package primitives;
  */
 public class Material {
     /**
-     * A diffuse reflection constant, the ratio of reflection of the diffuse term of incoming light (Lambertian reflectance)
+     * A diffuse reflection constant, the ratio of reflection of the diffuse term of incoming light (lambertian reflectance)
      */
     public double kD = 0;
     /**
@@ -16,7 +20,6 @@ public class Material {
      * A shininess constant for this material, which is larger for surfaces that are smoother and more mirror-like. When this constant is large the specular highlight is small
      */
     public int nShininess = 0;
-
     /**
      * reflection factor
      */
@@ -27,7 +30,6 @@ public class Material {
     public double kt = 0;
 
     //chaining methods:
-
     /**
      * setter of kD
      * @param kD The light's diffuse to set
@@ -77,5 +79,4 @@ public class Material {
         this.kt = kt;
         return this;
     }
-
 }

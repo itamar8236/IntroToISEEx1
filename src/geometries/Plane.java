@@ -1,10 +1,11 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package geometries;
-
 import primitives.*;
-
-import static primitives.Util.*;
-
 import java.util.List;
+import static primitives.Util.*;
 
 /**
  * class for represent Plane
@@ -14,14 +15,14 @@ public class Plane extends Geometry {
      * q0 is point in the plane
      */
     final Point3D q0;
+
     /**
      * normal of the plane
      */
     final Vector normal;
 
     /**
-     * ctor
-     *
+     * constructor
      * @param q0     some point on the plane
      * @param normal the vector normal of the plane
      */
@@ -31,8 +32,7 @@ public class Plane extends Geometry {
     }
 
     /**
-     * ctor that build normal from 2 vector that build from 3 points
-     *
+     * constructor that build normal from 2 vector that build from 3 points
      * @param p1 point in the plane
      * @param p2 point in the plane
      * @param p3 point in the plane
@@ -42,7 +42,6 @@ public class Plane extends Geometry {
 
         Vector U = p2.subtract(p1);
         Vector V = p3.subtract(p1);
-
         Vector N = U.crossProduct(V);
 
         N.normalize();
@@ -50,8 +49,7 @@ public class Plane extends Geometry {
     }
 
     /**
-     * get of q0
-     *
+     * getter of q0
      * @return Point3D p0
      */
     public Point3D getQ0() {
@@ -94,7 +92,6 @@ public class Plane extends Geometry {
         } catch (IllegalArgumentException ex) { // when P0 = q0
             return null;
         }
-
         return null;
     }
 }

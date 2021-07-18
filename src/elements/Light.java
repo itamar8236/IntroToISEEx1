@@ -1,5 +1,8 @@
-package elements;
+/**
+ * @author Avraham & Itamar
+ */
 
+package elements;
 import primitives.Color;
 
 /**
@@ -12,7 +15,7 @@ abstract class Light {
     final protected Color intensity;
 
     /**
-     * ctor
+     * constructor
      * @param intensity the intensity light
      */
     protected Light(Color intensity) {

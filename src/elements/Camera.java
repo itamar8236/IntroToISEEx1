@@ -143,7 +143,7 @@ public class Camera {
     /**
      * setter of ns, chaining methods
      * @param ns ns^2 is the number of rays in pixel
-     * @return the camrea
+     * @return the camera
      */
     public Camera setNs(int ns) {
         this.ns = ns;

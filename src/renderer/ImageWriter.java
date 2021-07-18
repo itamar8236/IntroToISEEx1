@@ -18,6 +18,7 @@ import javax.imageio.*;
  * @author Dan
  */
 public class ImageWriter {
+    //TODO
     private int nX;
     private int nY;
 

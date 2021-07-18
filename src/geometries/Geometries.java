@@ -1,8 +1,9 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package geometries;
-
-import primitives.Point3D;
 import primitives.Ray;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,21 +12,20 @@ import java.util.List;
  * class of collection of intersectable classes
  */
 public class Geometries implements Intersectable {
-
     /**
      * list of intersectable classes
      */
     private List<Intersectable> intersectables = null;
 
     /**
-     * ctor
+     * constructor
      */
     public Geometries() {
         intersectables = new LinkedList<>();
     }
 
     /**
-     * ctor
+     * constructor with params
      * @param intersectables params of intersectable
      */
     public Geometries(Intersectable... intersectables) {
@@ -43,6 +43,7 @@ public class Geometries implements Intersectable {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+        // finding the intersections with all the intersectable elements and return all the points
         List<GeoPoint> result = new LinkedList<>();
 
         for (Intersectable element: this.intersectables) {
@@ -53,6 +54,4 @@ public class Geometries implements Intersectable {
         }
         return result.size() == 0 ? null : result;
     }
-
-
 }

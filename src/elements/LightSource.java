@@ -1,5 +1,8 @@
-package elements;
+/**
+ * @author Avraham & Itamar
+ */
 
+package elements;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;

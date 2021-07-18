@@ -1,13 +1,16 @@
-package geometries;
+/**
+ * @author Avraham & Itamar
+ */
 
+package geometries;
 import primitives.*;
 
 /**
- * interface for Geometry objects
+ * abstract class for Geometry objects
  */
 public abstract class Geometry implements Intersectable {
     /**
-     * the emission of the element
+     * the emission color of the element
      */
     protected Color emission = Color.BLACK;
 
@@ -25,6 +28,14 @@ public abstract class Geometry implements Intersectable {
     }
 
     /**
+     * getter of the class
+     * @return the emission field
+     */
+    public Color getEmission() {
+        return emission;
+    }
+
+    /**
      * the setter of the class
      * @param material the kind of material
      * @return the geometry
@@ -32,14 +43,6 @@ public abstract class Geometry implements Intersectable {
     public Geometry setMaterial(Material material) {
         this.material = material;
         return this;
-    }
-
-    /**
-     * getter of the class
-     * @return the emission field
-     */
-    public Color getEmission() {
-        return emission;
     }
 
     /**

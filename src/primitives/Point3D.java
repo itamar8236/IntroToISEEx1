@@ -1,12 +1,13 @@
-package primitives;
+/**
+ * @author Avraham & Itamar
+ */
 
+package primitives;
 import java.util.Objects;
 
 /**
  * Class Point3D is basic geometric object to represent 3D point.
  * The class is using the basic class Coordinate to save the value of the 3D point.
- *
- * @author Avraham Glasberg & Itamar Cohen
  */
 public class Point3D {
     /**
@@ -27,6 +28,7 @@ public class Point3D {
     public static final Point3D ZERO = new Point3D(0, 0, 0);
 
     /**
+     * constructor
      * @param x coordinate for x axis
      * @param y coordinate for y axis
      * @param z coordinate for z axis
@@ -40,8 +42,7 @@ public class Point3D {
     }
 
     /**
-     * Constructor for 3D Point
-     *
+     * Constructor
      * @param x the x coordinate value
      * @param y the y coordinate value
      * @param z the z coordinate value
@@ -52,26 +53,32 @@ public class Point3D {
         this.z = new Coordinate(z);
     }
 
-    public double getX() { return x.coord; }
-    public double getY() { return y.coord; }
-    public double getZ() { return z.coord; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point3D point3D = (Point3D) o;
-        return x.equals(point3D.x) && y.equals(point3D.y) && z.equals(point3D.z);
+    /**
+     * getter of the X coordinate
+     * @return the X coordinate
+     */
+    public double getX() {
+        return x.coord;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(x.coord, y.coord, z.coord);
+    /**
+     * getter of the Y coordinate
+     * @return the Y coordinate
+     */
+    public double getY() {
+        return y.coord;
+    }
+
+    /**
+     * getter of the Z coordinate
+     * @return the Z coordinate
+     */
+    public double getZ() {
+        return z.coord;
     }
 
     /**
      * Calculate the distance, squared, between this point and another.
-     *
      * @param point3D the other point
      * @return the squared distance
      */
@@ -88,7 +95,6 @@ public class Point3D {
 
     /**
      * Calculate the distance, between this point and another.
-     *
      * @param point3D the other point
      * @return the distance
      */
@@ -98,7 +104,6 @@ public class Point3D {
 
     /**
      * Adds a vector to the point
-     *
      * @param vector the vector to add
      * @return the point of the head of the new vector from the current point with the vector added
      */
@@ -111,7 +116,6 @@ public class Point3D {
 
     /**
      * Calculate vector as subtraction between 2 points
-     *
      * @param other the second point
      * @return the vector from the current point to the other point
      */
@@ -121,6 +125,19 @@ public class Point3D {
                 y.coord - other.y.coord,
                 z.coord - other.z.coord
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point3D point3D = (Point3D) o;
+        return x.equals(point3D.x) && y.equals(point3D.y) && z.equals(point3D.z);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x.coord, y.coord, z.coord);
     }
 
     @Override

@@ -1,13 +1,15 @@
-package renderer;
+/**
+ * @author Avraham & Itamar
+ */
 
+package renderer;
 import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
-
 import java.util.List;
 
 /**
- * class to represent ray tracer
+ * abstract class to represent ray tracer
  */
 public abstract class RayTracerBase {
     /**
@@ -16,8 +18,8 @@ public abstract class RayTracerBase {
     protected Scene scene;
 
     /**
-     * ctor of the class
-      */
+     * constructor of the class
+     */
     public RayTracerBase(Scene scene) {
         if(scene == null)
             throw new UnsupportedOperationException("scene is null");
@@ -32,7 +34,6 @@ public abstract class RayTracerBase {
     public abstract Color traceRay(Ray ray);
 
     /**
-     *
      * function for finding the color of ray with scene
      * @param rays the list of rays from the pixel
      * @return the average color of the pixel according to the intersections of the rays

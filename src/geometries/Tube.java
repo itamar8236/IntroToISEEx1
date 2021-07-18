@@ -1,26 +1,50 @@
-package geometries;
-
-import primitives.*;
-
-import java.util.List;
-
-import static primitives.Util.*;
 /**
- * class for represent Cylinder
+ * @author Avraham & Itamar
+ */
+
+package geometries;
+import primitives.*;
+import java.util.List;
+import static primitives.Util.*;
+
+/**
+ * class for represent Tube
  */
 public class Tube extends Geometry {
     /**
-     * the axis ray of the Cylinder
+     * the axis ray of the Tube
      */
     protected final Ray axisRay;
+
     /**
-     * the radius of the Cylinder
+     * the radius of the Tube
      */
     protected final double radius;
 
+    /**
+     * constructor
+     * @param axisRay the axis ray of the tube
+     * @param radius the radius of the tube
+     */
     public Tube(Ray axisRay, double radius) {
         this.axisRay = axisRay;
         this.radius = radius;
+    }
+
+    /**
+     * Getter the axis ray of the tube
+     * @return The exis ray
+     */
+    public Ray getAxisRay() {
+        return axisRay;
+    }
+
+    /**
+     * Getter the radius of the tube
+     * @return The radius
+     */
+    public double getRadius() {
+        return radius;
     }
 
     @Override
@@ -39,22 +63,6 @@ public class Tube extends Geometry {
         N.normalize();
 
         return N;
-    }
-
-    /**
-     * Get the axis ray of the tube
-     * @return The exis ray
-     */
-    public Ray getAxisRay() {
-        return axisRay;
-    }
-
-    /**
-     * Get the radius of the tube
-     * @return The radius
-     */
-    public double getRadius() {
-        return radius;
     }
 
     @Override
@@ -77,7 +85,6 @@ public class Tube extends Geometry {
         double A, B, C;
 
         //(v,u) = v dot product u
-
         //calculate the vector: V-(V,Va)Va
         Vector VecA = v;
         double Vva = v.dotProduct(Va);
@@ -116,7 +123,6 @@ public class Tube extends Geometry {
             C = -1 * radius * radius;
         }
         //solving At^2 + Bt + C = 0
-
         //the discrimation, B^2 - 4AC
         double Disc = alignZero(B * B - 4 * A * C);
 

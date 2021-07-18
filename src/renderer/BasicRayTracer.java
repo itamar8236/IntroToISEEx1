@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * class to represent ray tracer basic class. inherits RayTracerBase class
  */
-public class RayTracerBasic extends RayTracerBase {
-
+public class BasicRayTracer extends RayTracerBase {
     /**
      * Constant value for the maximum level to calculate the color (preventing infinite recursion)
      */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
+
     /**
      * Constant value for the minimum calculation for the point's transparency
      */
@@ -30,19 +30,17 @@ public class RayTracerBasic extends RayTracerBase {
     private static final double INITIAL_K = 1.0;
 
     /**
-     * ctor of the class, based on the super class
-     *
+     * construct of the class, based on the super class
      * @param scene the scene of the image
      */
-    public RayTracerBasic(Scene scene) {
+    public BasicRayTracer(Scene scene) {
         super(scene);
     }
 
     /**
      * calculate the color of point
-     *
      * @param closestPoint the point that needed the calculate it color
-     * @param ray          the ray
+     * @param ray the ray
      * @return color of the point
      */
     private Color calcColor(GeoPoint closestPoint, Ray ray) {
@@ -50,12 +48,19 @@ public class RayTracerBasic extends RayTracerBase {
                 .add(scene.ambientLight.getIntensity());
     }
 
+    /**
+     * calculate the color of point
+     * @param intersection the point that need to calculate it's color
+     * @param ray the ray
+     * @param level the level of the recursion
+     * @param k the parameter k for stopping the recursion
+     * @return the color of the point
+     */
     private Color calcColor(GeoPoint intersection, Ray ray, int level, double k) {
         Color color = intersection.geometry.getEmission();
         color = color.add(calcLocalEffects(intersection, ray, k));
         return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray.getDir(), level, k));
     }
-
 
     /**
      * Checks the transparency of the point for the calc color function.
@@ -67,6 +72,7 @@ public class RayTracerBasic extends RayTracerBase {
      */
     private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1);
+
         //Ray from point towards light direction offset by delta
         Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
         List<GeoPoint> intersections = scene.geometries
@@ -84,10 +90,8 @@ public class RayTracerBasic extends RayTracerBase {
         return ktr;
     }
 
-
     /**
      * Calculate the local effect on the light
-     *
      * @param intersection The point on it you calculate the effects
      * @param ray          The camera view ray
      * @param k            The k value for the transparency calculation
@@ -105,14 +109,15 @@ public class RayTracerBasic extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
-            if (nl * nv > 0) { // sign(nl) == sing(nv)
+
+            // sign(nl) == sing(nv)
+            if (nl * nv > 0) {
                 double ktr = transparency(lightSource, l, n, intersection);
                 if (ktr * k > MIN_CALC_COLOR_K) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                     color = color.add(calcDiffusive(kd, l, n, lightIntensity),
                             calcSpecular(ks, l, n, v, nShininess, lightIntensity));
                 }
-
             }
         }
         return color;
@@ -120,7 +125,7 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * Calculate the global effect on the point's color, recursion function because the light
-     * goint out of the object effect it as well
+     * going out of the object effect it as well
      * @param gp The geo point
      * @param v The direction from the  camera to the point
      * @param level The level of the check. can't go forever or it'll be endless recursion
@@ -156,7 +161,7 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * Calculate and find the closest intersection point to a ray
+     * Calculate and finding the closest intersection point to a ray
      * @param ray The ray to find closest intersection point to
      * @return The closest point
      */
@@ -185,15 +190,12 @@ public class RayTracerBasic extends RayTracerBase {
     private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
         double vn = v.dotProduct(n);
         Vector r = v.subtract(n.scale(2 * (vn)));
-
         return new Ray(point, r, n);
     }
-
 
     /**
      * Calculate the specular color according to the formula in phong's module :
      * Ks * (max(0,-v*r))^Nsh*Il
-     *
      * @param ks             ks of  the formula
      * @param l              l of  the formula
      * @param n              n of  the formula
@@ -211,7 +213,6 @@ public class RayTracerBasic extends RayTracerBase {
     /**
      * Calculate the diffuse color according to the formula in phong's module :
      * 𝒌𝑫 ∙ |𝒍 ∙ 𝒏| ∙ Il
-     *
      * @param kd             kd of  the formula
      * @param l              l of  the formula
      * @param n              n of  the formula

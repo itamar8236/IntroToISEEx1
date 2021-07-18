@@ -1,9 +1,10 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package geometries;
-
 import primitives.*;
-
 import java.util.List;
-
 import static primitives.Util.*;
 
 /**
@@ -14,14 +15,14 @@ public class Sphere extends Geometry {
      * point of the center of the sphere
      */
     final Point3D center;
+
     /**
      * the radius of the sphere
      */
     final double radius;
 
     /**
-     * ctor
-     *
+     * constructor
      * @param center is the center of the sphere
      * @param radius is the radius of the sphere
      */
@@ -31,8 +32,7 @@ public class Sphere extends Geometry {
     }
 
     /**
-     * get of center
-     *
+     * getter of center
      * @return center
      */
     public Point3D getCenter() {
@@ -40,8 +40,7 @@ public class Sphere extends Geometry {
     }
 
     /**
-     * get of radius
-     *
+     * getter of radius
      * @return radius
      */
     public double getRadius() {
@@ -64,7 +63,6 @@ public class Sphere extends Geometry {
 
         return N;
     }
-
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
@@ -114,7 +112,6 @@ public class Sphere extends Geometry {
         } catch (IllegalArgumentException ex) { // the P0 point is the center of the sphere
             return List.of(new GeoPoint(this, ray.getPoint(radius)));
         }
-
         return null;
     }
 }

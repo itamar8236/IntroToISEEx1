@@ -1,5 +1,8 @@
-package elements;
+/**
+ * @author Avraham & Itamar
+ */
 
+package elements;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
@@ -12,10 +15,8 @@ public class PointLight extends Light implements LightSource{
      * The position of the light
      */
     private final Point3D position;
-    /**
-     * Attenuation factors:
-     */
 
+    // Attenuation factors:
     /**
      * The constant attenuation factor
      */
@@ -28,6 +29,19 @@ public class PointLight extends Light implements LightSource{
      * The quadratic attenuation
      */
     private double kQ;
+
+    /**
+     * constructor
+     * @param intensity the intensity of the light source
+     * @param position The position of the light source
+     */
+    public PointLight(Color intensity, Point3D position) {
+        super(intensity);
+        this.position = position;
+        kC = 1;
+        kL = 0;
+        kQ = 0;
+    }
 
     /**
      * Setter for the constant attenuation factor.
@@ -57,19 +71,6 @@ public class PointLight extends Light implements LightSource{
     public PointLight setkQ(double kQ) {
         this.kQ = kQ;
         return this;
-    }
-
-    /**
-     * constructor
-     * @param intensity the intensity of the light source
-     * @param position The position of the light source
-     */
-    public PointLight(Color intensity, Point3D position) {
-        super(intensity);
-        this.position = position;
-        kC = 1;
-        kL = 0;
-        kQ = 0;
     }
 
     @Override

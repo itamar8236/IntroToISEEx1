@@ -1,13 +1,14 @@
+/**
+ * @author Avraham & Itamar
+ */
+
 package primitives;
-
 import java.util.Objects;
-
 import static primitives.Point3D.ZERO;
 
 /**
  * Vector class is basic geometric class that represents a vector in space.
  * The class is using the basic class Point3D to save the head of the vector.
- *
  * @author Avraham Glasberg & Itamar Cohen
  */
 public class Vector {
@@ -18,7 +19,6 @@ public class Vector {
 
     /**
      * Constructor for Vector class
-     *
      * @param head The head of the vector as 3D point.
      */
     public Vector(Point3D head) {
@@ -30,7 +30,6 @@ public class Vector {
 
     /**
      * Constructor for Vector class
-     *
      * @param x The x coordinate of the head of the vector.
      * @param y The y coordinate of the head of the vector.
      * @param z The z coordinate of the head of the vector.
@@ -41,7 +40,6 @@ public class Vector {
 
     /**
      * Constructor for Vector class
-     *
      * @param x The x coordinate value of the head of the vector.
      * @param y The y coordinate value of the head of the vector.
      * @param z The z coordinate value of the head of the vector.
@@ -53,7 +51,6 @@ public class Vector {
     /**
      * Get the head of the vector
      * Notice! the head is not final variable, but changing is changing the vector itself!
-     *
      * @return The head of the vector.
      */
     public Point3D getHead() {
@@ -62,7 +59,6 @@ public class Vector {
 
     /**
      * Vector subtraction
-     *
      * @param other the other vector to subtract
      * @return the subtraction between the vectors
      */
@@ -73,7 +69,6 @@ public class Vector {
 
     /**
      * Vector addition
-     *
      * @param other the other vector too add
      * @return The addition between the two vectors.
      */
@@ -83,7 +78,6 @@ public class Vector {
 
     /**
      * Scalar product
-     *
      * @param scalar the scalar to multiple the vector with
      * @return The new vector after the multiplication.
      */
@@ -97,7 +91,6 @@ public class Vector {
 
     /**
      * Dot product between two vectors.
-     *
      * @param other The other vector to multiple
      * @return The value of the dot product
      */
@@ -109,7 +102,6 @@ public class Vector {
 
     /**
      * Cross product between two vectors
-     *
      * @param other the other vector
      * @return The vertical vector to the two vectors (the cross product value).
      */
@@ -130,7 +122,6 @@ public class Vector {
 
     /**
      * Calculate the distance, squared, of the vector.
-     *
      * @return The squared distance
      */
     public double lengthSquared() {
@@ -139,7 +130,6 @@ public class Vector {
 
     /**
      * Calculate the distance of the vector.
-     *
      * @return The distance
      */
     public double length() {
@@ -147,10 +137,9 @@ public class Vector {
     }
 
     /**
-     * Calculate the vector  as normal (with length of 1)
+     * Calculate the vector as normal (with length of 1)
      * This function does not change the vector itself.
-     *
-     * @return The normalized vector.
+     * @return new normalized vector
      */
     public Vector normalized() {
         Vector v = new Vector(
@@ -165,8 +154,7 @@ public class Vector {
     /**
      * Calculate the vector  as normal (with length of 1)
      * This function DOES change the vector itself, and so every other vector that was set as equal to this one!
-     *
-     * @return The normalized vector.
+     * @return The vector, normalized
      */
     public Vector normalize() {
         double len = this.length();

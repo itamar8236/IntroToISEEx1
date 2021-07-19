@@ -237,6 +237,7 @@ public class BasicRayTracer extends RayTracerBase {
 
     @Override
     public Color traceRays(List<Ray> rays) {
+        //calculate and return the average color from beam of rays.
         Color result = Color.BLACK;
         for (Ray ray: rays) {
             result = result.add(traceRay(ray));
